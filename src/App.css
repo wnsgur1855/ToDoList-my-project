@@ -1,38 +1,97 @@
-.App {
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  background-color: blueviolet;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.inputter {
+  width: 200px;
+  height: 30px;
+  border: 2px solid yellow;
+  border-radius: 10px;
+}
+
+.Buttonman {
+  width: 170px;
+  height: 30px;
+  background-color: teal;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.largelargebox {
+  padding: 1px;
+}
+
+.Workingbox {
+  padding: 20px, 0px, 20px;
+  font-size: x-large;
+  font-family: fantasy;
+  font-weight: normal;
+  background-color: white;
+}
+
+.largeBox {
+  padding: 30px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.componentStyle {
+  width: 200px;
+  height: 150px;
+  border-radius: 15px;
+  border: 5px solid green;
+  justify-content: center;
+  padding: 10px;
+}
+
+.boxTitle {
+  padding: 15px;
+  text-align: left;
+  font-size: large;
+  font-family: fantasy;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+}
+
+.boxContent {
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: small;
+  background-color: white;
+}
+
+.deleteButton {
+  background-color: #fff;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+.completeButton {
+  background-color: #fff;
+  border: 2px solid green;
+  border-radius: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contentBox {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 100px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.largelargelargeBox {
+  border-radius: 25px;
 }
