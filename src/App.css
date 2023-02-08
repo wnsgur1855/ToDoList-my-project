@@ -43,6 +43,10 @@
 
 .largelargebox {
   padding: 1px;
+  border-radius: 25px;
+  min-width: 800px;
+  max-width: 1200px;
+  margin: 0auto;
 }
 
 .Workingbox {
