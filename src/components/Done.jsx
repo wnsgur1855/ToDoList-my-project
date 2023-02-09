@@ -1,21 +1,4 @@
-const Done = ({ item, todo, setTodo, done, setDone }) => {
-  const doneDel = (id) => {
-    setDone(done.filter((item) => item.id !== id));
-  };
-  const clickfalseButtonHandler = (item) => {
-    const find = done.filter((value) => value.id !== item.id);
-    setDone(find);
-    setTodo([
-      ...todo,
-      {
-        id: item.id,
-        title: item.title,
-        content: item.content,
-        isDone: !item.done,
-      },
-    ]);
-    alert('완료');
-  };
+const Done = ({ item, doneDel, clickfalseButtonHandler }) => {
   return (
     <div key={item.id} className="componentStyle">
       <div className="boxTitle">{item.title}</div>
@@ -30,4 +13,5 @@ const Done = ({ item, todo, setTodo, done, setDone }) => {
     </div>
   );
 };
+
 export default Done;
