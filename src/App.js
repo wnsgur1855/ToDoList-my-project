@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './App.css';
+import Input from './components/Input';
 import Working from './components/working';
 import Done from './components/Done';
 
@@ -12,67 +13,91 @@ function App() {
     { id: 2, title: '바보', content: '나는' },
     { id: 3, title: '헤헤', content: '바보' },
   ]);
-  const [done, setDone] = useState([
-    { id: 1, title: '나는', content: '헤헤' },
-    { id: 2, title: '바보', content: '나는' },
-    { id: 3, title: '헤헤', content: '바보' },
-  ]);
+  const [done, setDone] = useState([]);
   const [count, setCount] = useState(0);
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+  //title
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
-
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
+  //content
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
   };
-
+  //content title 추가
   const handleAdd = () => {
     setTodo([...todo, { id: todo.length + 1, title: title, content: content }]);
     alert('추가');
   };
+  //Working삭제
+  const todoDel = (id) => {
+    setTodo(todo.filter((item) => item.id !== id));
+  };
+  //working을 done으로 보냄
+  const clickDoneButtonHandler = (item) => {
+    const find = todo.filter((value) => value.id !== item.id);
+    setTodo(find);
+    setDone([
+      ...done,
+      {
+        id: item.id,
+        title: item.title,
+        content: item.content,
+        isDone: !item.done,
+      },
+    ]);
+    console.log(item, find);
+    alert('완료');
+  };
+  //count
   const clickCount = () => {
-    setCount(count + 1);
+    setCount((count) => (count == 30 ? (count = 0) : count + 1));
+  };
+
+  //done삭제
+  const doneDel = (id) => {
+    setDone(done.filter((item) => item.id !== id));
+  };
+  //done을 working으로 보냄
+  const clickfalseButtonHandler = (item) => {
+    const find = done.filter((value) => value.id !== item.id);
+    setDone(find);
+    setTodo([
+      ...todo,
+      {
+        id: item.id,
+        title: item.title,
+        content: item.content,
+        isDone: !item.done,
+      },
+    ]);
+    alert('완료');
   };
 
   return (
     <div>
       <div className="topContainer">
-        <span className="texttex">My Todo List</span>
+        <strong className="texttex">My Todo List</strong>
         <strong className="texttex">React</strong>
       </div>
-      <div className="title">
-        제목 &nbsp;
-        <input value={title} onChange={handleTitleChange} className="inputter" type="text" /> &nbsp;
-        <button onClick={clickCount}>누르지마셔요</button>
-        내용 &nbsp;
-        <input
-          value={content}
-          onChange={handleContentChange}
-          className="inputter"
-          type="text"
-        />{' '}
-        &nbsp;
-        <button onClick={handleAdd} className="Buttonman">
-          추가
-        </button>
-      </div>
+      <Input
+        content={content}
+        title={title}
+        handleContentChange={handleContentChange}
+        handleTitleChange={handleTitleChange}
+        handleAdd={handleAdd}
+      />
       <div className="largelargebox">
-        {' '}
         <h2 className="Workingbox">Working..🔥</h2>
         <div className="largeBox">
           {todo.map((item, index) => (
             <Working
               key={item.id}
               item={item}
-              todo={todo}
-              setTodo={setTodo}
-              done={done}
-              setDone={setDone}
+              todoDel={todoDel}
+              clickDoneButtonHandler={clickDoneButtonHandler}
+              clickCount={clickCount}
               count={count}
-              setCount={setCount}
-              title={title}
-              content={content}
             />
           ))}
         </div>
@@ -82,10 +107,8 @@ function App() {
             <Done
               key={item.id}
               item={item}
-              todo={todo}
-              setTodo={setTodo}
-              done={done}
-              setDone={setDone}
+              doneDel={doneDel}
+              clickfalseButtonHandler={clickfalseButtonHandler}
             />
           ))}
         </div>
