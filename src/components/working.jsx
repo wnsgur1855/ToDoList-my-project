@@ -1,4 +1,23 @@
-const Working = ({ item, todoDel, clickDoneButtonHandler, clickCount, count }) => {
+const Working = ({ item, setTodo, todo, setDone, done }) => {
+  const todoDel = (id) => {
+    //1,2,3,4  !=  1
+    setTodo(todo.filter((item) => item.id !== id));
+  };
+  const clickDoneButtonHandler = (item) => {
+    const find = todo.filter((value) => value.id !== item.id);
+    setTodo(find);
+    setDone([
+      ...done,
+      {
+        id: item.id,
+        title: item.title,
+        content: item.content,
+        isDone: !item.done,
+      },
+    ]);
+    console.log(item, find);
+    alert('완료');
+  };
   return (
     <div className="componentStyle">
       <div className="boxTitle">{item.title}</div>
@@ -10,8 +29,6 @@ const Working = ({ item, todoDel, clickDoneButtonHandler, clickCount, count }) =
       <button onClick={() => clickDoneButtonHandler(item)} className="completeButton">
         추가
       </button>
-      <button onClick={clickCount}>누르지마셔요</button>
-      <div>{count}</div>
     </div>
   );
 };
